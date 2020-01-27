@@ -32,13 +32,13 @@ Codewif is an Android library framework to allow you to perform in-app testing o
   * [Modifying Your Gradle Files](#1-modifying-your-gradle-files)
   * [Creating Folders For Test Code](#2-creating-folders-for-test-code)
   * [Creating a Stub File](#3-creating-a-stub-file)
-  * [Launching Codewif](#4-launching-codewif)
-  * [Setting Up Tests](#5-setting-up-tests)
+  * [Setting Up Tests](#4-setting-up-tests)
     * [UI Tests](#ui-tests)
     * [Handling Test Exceptions](#handling-test-exceptions)
     * [Managing a Large Number of Tests](#managing-a-large-number-of-tests)
     * [Configuring a TestController](#configuring-a-testController)
     * [Testing an Android Library](#testing-an-android-library)
+* [Launching Codewif](#5-launching-codewif)
 * [Using the Codewif UI](#using-the-codewif-ui)
   * [The Tests Screen](#the-tests-screen)
   * [The Test Results Screen During Testing](#the-test-results-screen-during-testing)
@@ -263,35 +263,7 @@ object TestController {
 ```
 <br>
 
-### 4. Launching Codewif
-How you launch your testing depends on whether you want to run your tests manually and interact with Codewif's UI or whether you want to launch your tests immediately without any user interaction. In your stub file, the function you use to launch testing is left empty. But on the test branch, it is replaced with your test code.
- 
-**Start Testing Manually:** Use a click event handler to launch Codewif. For instance, you could have a textview somewhere and add a click event handler to it which then launches Codewif.
-
-**Start Testing Automatically**: Place this inside your main activity's ```onCreate``` method. You should do this after your app has already been initialized. This might mean having to test to see if all your app's setup conditions have been met before launching Codewif. In many cases, you can just simply place a call to your launch method as the last thing in your ```onCreate``` method. In other cases where it takes several seconds before your app completes a stable startup, you may find it easier to just use a delay in your launch code.
-
-The following code shows how to launch Codewif:
-
-```kotlin
-class MainActivity : AppCompatActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        // Start testing automatically
-        TestController.runTests(this)
-
-        // Alternatively, start testing by clicking on some label.
-        textview_title.setOnClickListener {
-            TestController.runTests(this)
-        }
-    }
-}
-```
-<br>
-
-### 5. Setting Up Tests
+### 4. Setting Up Tests
 Although there is no fixed rule on where you place your test code, it is recommended that you place it in the same folder where your TestController class is located. You should however organize your tests in a way that makes sense. One strategy is to separate unit testing from UI testing, so a folder called ```unitTesting``` and another one called ```uiTesting``` would be good choices.
 
 You should also separate your tests by related groups. For example, if you are doing unit testing and have utility classes for strings, dates, math, etc., you should create separate test classes for each of these. 
@@ -433,6 +405,34 @@ The ```addTestSetups``` method takes one or more references to your test classes
 
 It should be noted that while the example above uses a coroutine to launch the testing, you are not required to do this. However, it is recommended in order to allow your tests to be setup asynchronously while your app is starting. Even without this coroutine, the ```runTests``` method does in fact run your tests inside its own coroutine.
 <br><br>
+
+### 5. Launching Codewif
+How you launch your testing depends on whether you want to run your tests manually and interact with Codewif's UI or whether you want to launch your tests immediately without any user interaction. In your stub file, the function you use to launch testing is left empty. But on the test branch, it is replaced with your test code.
+ 
+**Start Testing Manually:** Use a click event handler to launch Codewif. For instance, you could have a textview somewhere and add a click event handler to it which then launches Codewif.
+
+**Start Testing Automatically**: Place this inside your main activity's ```onCreate``` method. You should do this after your app has already been initialized. This might mean having to test to see if all your app's setup conditions have been met before launching Codewif. In many cases, you can just simply place a call to your launch method as the last thing in your ```onCreate``` method. In other cases where it takes several seconds before your app completes a stable startup, you may find it easier to just use a delay in your launch code.
+
+The following code shows how to launch Codewif:
+
+```kotlin
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        // Start testing automatically
+        TestController.runTests(this)
+
+        // Alternatively, start testing by clicking on some label.
+        textview_title.setOnClickListener {
+            TestController.runTests(this)
+        }
+    }
+}
+```
+<br>
 
 #### Testing an Android Library
 
