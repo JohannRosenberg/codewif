@@ -2,6 +2,7 @@ package com.codewif.testing.unittests.codewif
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import com.codewif.framework.da.local.TestRepository
 import com.codewif.framework.eventBus.EventBusController
 import com.codewif.framework.models.TestResult
 import com.codewif.framework.models.UnitTest
@@ -21,7 +22,7 @@ class FrameworkUnitTests : TestSetup() {
     init {
         val ctx = this
 
-        addTest(UnitTest(testName = "createCodewifProjectSnapshotFolder").testToRunSync {
+        addTest(UnitTest(testName = "Store cat-1 to cache").testToRunSync {
             val testResult = TestResult()
 
             val id: Int = R.drawable.cat_1
@@ -29,10 +30,10 @@ class FrameworkUnitTests : TestSetup() {
 
             val stream = ByteArrayOutputStream()
             bitmap.compress(Bitmap.CompressFormat.WEBP, 100, stream)
-            val bitmapdata: ByteArray = stream.toByteArray()
+            //val byteArray: ByteArray = stream.toByteArray()
 
             val fileUtils = FileUtils()
-            //fileUtils.saveUITestImageToDisk(TestRunner.proj)
+            fileUtils.saveUITestImageToDisk(stream, TestRepository.projectId, "Store cat-1 to cache")
 
             testResult.succeeded = true
             testResult
