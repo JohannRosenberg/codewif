@@ -12,5 +12,7 @@ class MainActivity : AppCompatActivity() {
 
         // Start testing automatically
         TestController.runTests(this)
+
+        finish()
     }
 }

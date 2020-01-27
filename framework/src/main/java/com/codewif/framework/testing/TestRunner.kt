@@ -1,9 +1,12 @@
 package com.codewif.framework.testing
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.util.Log
 import androidx.core.content.ContextCompat
+import androidx.navigation.Navigation
+import com.codewif.framework.R
 import com.codewif.framework.da.local.Export
 import com.codewif.framework.da.local.TestRepository
 import com.codewif.framework.errorHandling.MissingSetupDataException
@@ -199,9 +202,16 @@ open class TestRunner {
          * Displays the test results screen.
          */
         fun displayTestResults(): Companion {
-            val intent = Intent(App.ctx, CodewifMainActivity::class.java)
-            intent.putExtra(ActivityConstants.BUNDLE_PARAM_NAVIGATE_TO_TEST_RESULTS_SCREEN, true)
-            displayUI(intent)
+            if (App.isCurrentActivity<CodewifMainActivity>()) {
+                GlobalScope.launch(Dispatchers.Main) {
+                    val navController = Navigation.findNavController(App.currentActivity as Activity, R.id.nav_host_fragment)
+                    navController.navigate(R.id.test_results_fragment)
+                }
+            } else {
+                val intent = Intent(App.ctx, CodewifMainActivity::class.java)
+                intent.putExtra(ActivityConstants.BUNDLE_PARAM_NAVIGATE_TO_TEST_RESULTS_SCREEN, true)
+                displayUI(intent)
+            }
 
             return TestRunner
         }
@@ -327,9 +337,17 @@ open class TestRunner {
                                 val startTime = Date()
 
                                 try {
-                                    withContext(Dispatchers.IO) {
-                                        testResult = unitTest.getTestToRunSync()?.invoke() as TestResult
+
+                                    suspendCoroutine<Unit> { continuation ->
+                                        launch(Dispatchers.IO) {
+                                            testResult = unitTest.getTestToRunSync()?.invoke() as TestResult
+                                            continuation.resume(Unit)
+                                        }
                                     }
+
+/*                                    withContext(Dispatchers.IO) {
+                                        testResult = unitTest.getTestToRunSync()?.invoke() as TestResult
+                                    }*/
                                 } catch (exception: Exception) {
                                     testResult = TestResult("Exception: ${exception.message}")
                                 } finally {
@@ -342,9 +360,12 @@ open class TestRunner {
                                 var terminate = false
 
                                 try {
-                                    withContext(Dispatchers.Main) {
-                                        unitTest.getUITestToRun()?.invoke()
-                                        testResult = UITester.testUI(testInfo)
+                                    suspendCoroutine<Unit> { continuation ->
+                                        launch(Dispatchers.Main) {
+                                            unitTest.getUITestToRun()?.invoke()
+                                            testResult = UITester.testUI(testInfo)
+                                            continuation.resume(Unit)
+                                        }
                                     }
                                 } catch (exception: CreatingFileException) {
                                     terminate = true
@@ -357,6 +378,7 @@ open class TestRunner {
                                     if (!terminate)
                                         doOnTestCompleted(testInfo, testResult, startTime, Date(), false)
                                 }
+
                             }
                             else -> {
                                 throw NoTestDefinedException("${testInfo.testName}, ${unitTestSetup.key}")

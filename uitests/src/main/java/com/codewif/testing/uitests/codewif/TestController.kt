@@ -20,8 +20,9 @@ object TestController {
                 .setLibraryPackageName(com.codewif.framework.BuildConfig.LIBRARY_PACKAGE_NAME)
                 .setVersionName(com.codewif.framework.BuildConfig.VERSION_NAME)
                 .setGitBranchName("ui_tests")
-                .displayTestResults()
                 .addTestSetups(::UITests)
+                .displayTests()
+                .showTestResultsAfterTesting()
                 .runTests()
         }
     }
