@@ -21,7 +21,7 @@ object TestController {
                 .setVersionName(com.codewif.framework.BuildConfig.VERSION_NAME)
                 .setGitBranchName("unit_tests")
                 .displayTestResults()
-                .addTestSetups(::FrameworkhUnitTests)
+                .addTestSetups(::FrameworkUnitTests)
                 .runTests()
         }
     }

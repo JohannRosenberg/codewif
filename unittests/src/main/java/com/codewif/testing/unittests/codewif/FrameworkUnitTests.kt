@@ -1,27 +1,42 @@
 package com.codewif.testing.unittests.codewif
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import com.codewif.framework.eventBus.EventBusController
 import com.codewif.framework.models.TestResult
 import com.codewif.framework.models.UnitTest
 import com.codewif.framework.testing.TestSetup
+import com.codewif.shared.App
 import com.codewif.shared.eventBus.EventBusControllerBase
 import com.codewif.shared.eventBus.EventBusTypes
+import com.codewif.shared.utils.FileUtils
+import com.codewif.testing.unittests.R
+import java.io.ByteArrayOutputStream
+
 
 /**
  * This is where tests are configured.
  */
-class FrameworkhUnitTests : TestSetup() {
+class FrameworkUnitTests : TestSetup() {
     init {
         val ctx = this
 
-/*        addTest(UnitTest("Number is divisible by 4").testToRunSync {
+        addTest(UnitTest(testName = "createCodewifProjectSnapshotFolder").testToRunSync {
             val testResult = TestResult()
 
+            val id: Int = R.drawable.cat_1
+            val bitmap: Bitmap = BitmapFactory.decodeResource(App.ctx.resources, id)
 
+            val stream = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.WEBP, 100, stream)
+            val bitmapdata: ByteArray = stream.toByteArray()
 
-            //testResult.succeeded = MathUtis.divisibleByFour(18)
+            val fileUtils = FileUtils()
+            //fileUtils.saveUITestImageToDisk(TestRunner.proj)
+
+            testResult.succeeded = true
             testResult
-        })*/
+        })
 
         addTest(UnitTest("subscribeToTestingStateChange").testToRunAsync { callback ->
             val testResult = TestResult()
@@ -35,5 +50,64 @@ class FrameworkhUnitTests : TestSetup() {
             EventBusController.publishTestingStateChange(true)
         })
 
+        addTest(UnitTest("subscribeToFinalTestResultsUpdated").testToRunAsync { callback ->
+            val testResult = TestResult()
+
+            EventBusController.subscribeToFinalTestResultsUpdated(this) {
+                EventBusControllerBase.unsubscribeFromEvent(ctx, EventBusTypes.TEST_RESULTS_UPDATED)
+                testResult.succeeded = true
+                callback.invoke(testResult)
+            }
+
+            EventBusController.publishFinalTestResultsUpdated()
+        })
+
+        addTest(UnitTest("subscribeToPermissionsResponse").testToRunAsync { callback ->
+            val testResult = TestResult()
+
+            EventBusControllerBase.subscribeToPermissionsResponse(this) {
+                EventBusControllerBase.unsubscribeFromEvent(ctx, EventBusTypes.PERMISSIONS_RESPONSE)
+                testResult.succeeded = true
+                callback.invoke(testResult)
+            }
+
+            EventBusControllerBase.publishPermissionsResponse()
+        })
+
+        addTest(UnitTest("subscribeToActivityCreated").testToRunAsync { callback ->
+            val testResult = TestResult()
+
+            EventBusControllerBase.subscribeToActivityCreated(this) {
+                EventBusControllerBase.unsubscribeFromEvent(ctx, EventBusTypes.ACTIVITY_CREATED)
+                testResult.succeeded = true
+                callback.invoke(testResult)
+            }
+
+            EventBusControllerBase.publishActivityCreated(Unit)
+        })
+
+        addTest(UnitTest("subscribeToActivityResumed").testToRunAsync { callback ->
+            val testResult = TestResult()
+
+            EventBusControllerBase.subscribeToActivityResumed(this) {
+                EventBusControllerBase.unsubscribeFromEvent(ctx, EventBusTypes.ACTIVITY_RESUMED)
+                testResult.succeeded = true
+                callback.invoke(testResult)
+            }
+
+            EventBusControllerBase.publishActivityResumed(Unit)
+        })
+
+        addTest(UnitTest("subscribeToActivityDestroyed").testToRunAsync { callback ->
+            val testResult = TestResult()
+
+            EventBusControllerBase.subscribeToActivityDestroyed(this) {
+                EventBusControllerBase.unsubscribeFromEvent(ctx, EventBusTypes.ACTIVITY_DESTROYED)
+                testResult.succeeded = true
+                callback.invoke(testResult)
+            }
+
+            EventBusControllerBase.publishActivityDestroyed(Unit)
+        })
     }
 }
