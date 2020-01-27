@@ -344,10 +344,6 @@ open class TestRunner {
                                             continuation.resume(Unit)
                                         }
                                     }
-
-/*                                    withContext(Dispatchers.IO) {
-                                        testResult = unitTest.getTestToRunSync()?.invoke() as TestResult
-                                    }*/
                                 } catch (exception: Exception) {
                                     testResult = TestResult("Exception: ${exception.message}")
                                 } finally {
