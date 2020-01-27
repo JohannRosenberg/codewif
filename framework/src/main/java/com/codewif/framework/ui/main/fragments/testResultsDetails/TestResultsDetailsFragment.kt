@@ -78,14 +78,6 @@ class TestResultsDetailsFragment : BaseFragment(R.layout.cw_fragment_test_result
             }
         })
 
-        seekbar_alpha.requestFocus()
-
-        if ((testInfo.testResults?.succeeded == true) || (testInfo.uiTestInfoPrevious == null)) {
-            // Hide the imageview that is used to show the previous snapshot.
-            iv_snapshot_previous.visibility = View.GONE
-            constraint_layout_images_footer.visibility = View.GONE
-        }
-
         if (testInfo.testResults?.details == null) {
             cardview_details.visibility = View.GONE
         }
@@ -101,16 +93,21 @@ class TestResultsDetailsFragment : BaseFragment(R.layout.cw_fragment_test_result
                 }
 
                 if ((testInfo.testResults?.succeeded == true) || (testInfo.uiTestInfoPrevious == null)) {
+                    constraint_layout_images_footer.visibility = View.GONE
                     iv_snapshot_current.layoutParams.height = rootView.height - 60
                     iv_snapshot_current.requestLayout()
 
                 } else {
-                    testInfo.uiTestInfoPrevious?.snapshotUrl?.let {
-                        if (it.startsWith("/")) {
-                            iv_snapshot_previous.load(File(it))
-                        } else {
-                            iv_snapshot_previous.load(it)
+                    if (testInfo.uiTestInfoPrevious?.snapshotUrl != null) {
+                        testInfo.uiTestInfoPrevious?.snapshotUrl?.let {
+                            if (it.startsWith("/")) {
+                                iv_snapshot_previous.load(File(it))
+                            } else {
+                                iv_snapshot_previous.load(it)
+                            }
                         }
+                    } else {
+                        constraint_layout_images_footer.visibility = View.GONE
                     }
 
                     val h = rootView.height - constraint_layout_images_footer.height - 80
