@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_layout_testing_complete_header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/cw_test_results_screen_header_bg"
+        android:paddingTop="8dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/barrier1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_total_tested_label"
+            style="@style/CWTestResultsScreenHeaderLabelTop"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="@string/cw_total"
+            app:layout_constraintEnd_toStartOf="@+id/tv_total_succeeded_label"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_total_succeeded_label"
+            style="@style/CWTestResultsScreenHeaderLabelTop"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/cw_succeeded"
+            app:layout_constraintEnd_toStartOf="@+id/tv_total_failed_label"
+            app:layout_constraintStart_toEndOf="@+id/tv_total_tested_label"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_total_failed_label"
+            style="@style/CWTestResultsScreenHeaderLabelTop"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/cw_failed"
+            app:layout_constraintEnd_toStartOf="@+id/tv_total_skipped_label"
+            app:layout_constraintStart_toEndOf="@+id/tv_total_succeeded_label"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_total_skipped_label"
+            style="@style/CWTestResultsScreenHeaderLabelTop"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:text="@string/cw_skipped"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_total_failed_label"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_total_tested"
+            style="@style/CWTestResultsScreenHeaderValueTop"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:textColor="#000000"
+            app:layout_constraintEnd_toStartOf="@+id/tv_total_succeeded"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_total_tested_label" />
+
+        <TextView
+            android:id="@+id/tv_total_succeeded"
+            style="@style/CWTestResultsScreenHeaderValueTop"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="#6ABB40"
+            app:layout_constraintEnd_toStartOf="@+id/tv_total_failed"
+            app:layout_constraintStart_toEndOf="@+id/tv_total_tested"
+            app:layout_constraintTop_toBottomOf="@id/tv_total_succeeded_label" />
+
+        <TextView
+            android:id="@+id/tv_total_failed"
+            style="@style/CWTestResultsScreenHeaderValueTop"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="#F04848"
+            app:layout_constraintEnd_toStartOf="@+id/tv_total_skipped"
+            app:layout_constraintStart_toEndOf="@+id/tv_total_succeeded"
+            app:layout_constraintTop_toBottomOf="@id/tv_total_failed_label" />
+
+        <TextView
+            android:id="@+id/tv_total_skipped"
+            style="@style/CWTestResultsScreenHeaderValueTop"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:textColor="#808080"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_total_failed"
+            app:layout_constraintTop_toBottomOf="@id/tv_total_skipped_label" />
+
+
+        <TextView
+            android:id="@+id/tv_git_branch_label"
+            style="@style/CWTestResultsScreenHeaderLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/cw_git_branch"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_total_tested" />
+
+        <TextView
+            android:id="@+id/tv_git_branch"
+            style="@style/CWTestResultsScreenHeaderValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            app:layout_constraintStart_toEndOf="@id/tv_git_branch_label"
+            app:layout_constraintTop_toTopOf="@id/tv_git_branch_label" />
+
+        <TextView
+            android:id="@+id/tv_Duration_label"
+            style="@style/CWTestResultsScreenHeaderLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="@string/cw_duration"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_git_branch_label" />
+
+        <TextView
+            android:id="@+id/tv_duration"
+            style="@style/CWTestResultsScreenHeaderValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/tv_git_branch"
+            app:layout_constraintTop_toTopOf="@id/tv_Duration_label" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/cw_test_results_screen_divider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_Duration_label" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="top"
+        app:constraint_referenced_ids="rv_tests" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_tests"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layoutManager="LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/constraint_layout_testing_complete_header"
+        tools:context=".ui.main.fragments.tests.TestsFragment" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="cw_lavendar">#4F54BB</color>
+    <color name="cw_lavendar_light">#C4C4FF</color>
+
+    // Snackbars
+    <color name="cw_snackbar_background">@color/cw_lavendar</color>
+    <color name="cw_snackbar_button_text_color">@color/cw_lavendar_light</color>
+    <color name="cw_snackbar_error_text">#F56565</color>
+
+</resources>

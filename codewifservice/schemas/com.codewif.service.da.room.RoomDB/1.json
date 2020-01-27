@@ -1,0 +1,53 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "855e34b1c5829d58cb5ed0a358d526f1",
+    "entities": [
+      {
+        "tableName": "UITests",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`testId` TEXT NOT NULL, `projectId` TEXT NOT NULL, `hashcode` INTEGER NOT NULL, `snapshotUrl` TEXT, PRIMARY KEY(`projectId`, `testId`))",
+        "fields": [
+          {
+            "fieldPath": "testId",
+            "columnName": "testId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "projectId",
+            "columnName": "projectId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "hashcode",
+            "columnName": "hashcode",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "snapshotUrl",
+            "columnName": "snapshotUrl",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "projectId",
+            "testId"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '855e34b1c5829d58cb5ed0a358d526f1')"
+    ]
+  }
+}

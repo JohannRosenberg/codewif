@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.codewif.framework">
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application android:name="com.codewif.shared.App">
+
+        <activity
+            android:name="com.codewif.framework.ui.main.CodewifMainActivity"
+            android:launchMode="singleInstance"
+            android:icon="@drawable/cw_ic_codewif"
+            android:theme="@style/AppTheme.CodewifTheme" />
+
+    </application>
+
+</manifest>

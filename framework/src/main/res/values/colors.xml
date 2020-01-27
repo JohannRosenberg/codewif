@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--    Base colors -->
+    <color name="cw_purple_pale">#F4F6FF</color>
+    <color name="cw_blue_200">#90CAF9</color>
+    <color name="cw_blue_300">#64B5F6</color>
+    <color name="cw_blue_600">#1E88E5</color>
+    <color name="cw_green_500">#4CAF50</color>
+    <color name="cw_grey_300">#E0E0E0</color>
+    <color name="cw_grey_350">#D6D6D6</color>
+    <color name="cw_grey_400">#BDBDBD</color>
+    <color name="cw_grey_500">#9E9E9E</color>
+    <color name="cw_grey_800">#424242</color>
+    <color name="cw_lila">#686697</color>
+    <color name="cw_lila_light">#D5D5FF</color>
+    <color name="cw_lavendar_light_alpha">#284F54BB</color>
+    <color name="cw_light_grey">#A5A5A5</color>
+    <color name="cw_red_400">#EF5350</color>
+    <color name="cw_white_light">#F2F2FF</color>
+    <color name="cw_white">#ffffff</color>
+
+    <!--    Toolbar-->
+    <color name="cw_toolbar_menu_icon_color">@color/cw_lavendar_light</color>
+    <color name="cw_toolbar_menu_stop_testing_icon_color">@color/cw_red_400</color>
+
+    <!--    Navigation drawer-->
+    <color name="cw_navigation_menu_item_bg_selected">@color/cw_lavendar_light_alpha</color>
+    <color name="cw_navigation_menu_header_bg">@color/cw_lavendar</color>
+    <color name="cw_navigation_menu_header_text">@color/cw_white</color>
+    <color name="cw_navigation_menu_icon_tint">@color/cw_grey_800</color>
+
+    <!--    Tests Screen-->
+    <color name="cw_tests_screen_title">@color/cw_lavendar</color>
+    <color name="cw_tests_screen_title_disabled">@color/cw_light_grey</color>
+    <color name="cw_tests_screen_sub_title">@color/cw_grey_800</color>
+    <color name="cw_tests_screen_sub_title_disabled">@color/cw_light_grey</color>
+    <color name="cw_test_screen_icon_synchronous">@color/cw_blue_300</color>
+    <color name="cw_tests_screen_row_divider">@color/cw_grey_350</color>
+
+    <!--    Tests results screen-->
+    <color name="cw_tests_results_screen_icon_succeeded">@color/cw_green_500</color>
+    <color name="cw_tests_results_screen_icon_failed">@color/cw_red_400</color>
+    <color name="cw_tests_results_screen_icon_running">@color/cw_blue_600</color>
+    <color name="cw_test_results_screen_icon_synchronous">@color/cw_blue_300</color>
+    <color name="cw_test_results_screen_divider">@color/cw_grey_400</color>
+    <color name="cw_test_results_screen_header_bg">@color/cw_purple_pale</color>
+    <color name="cw_test_results_screen_row_divider">@color/cw_grey_350</color>
+
+    <!--    Tests details screen-->
+    <color name="cw_test_details_screen_alpha_icon">@color/cw_lavendar</color>
+    <color name="cw_test_details_screen_scroll_bg">@color/cw_grey_300</color>
+    <color name="cw_test_details_screen_summary_cardview_bg">@color/cw_white</color>
+    <color name="cw_test_details_screen_desc_cardview_bg">@color/cw_lila</color>
+    <color name="cw_test_details_screen_details_label">@color/cw_lila_light</color>
+    <color name="cw_test_details_screen_details_text">@color/cw_white_light</color>
+
+</resources>

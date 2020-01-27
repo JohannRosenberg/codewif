@@ -1,0 +1,9 @@
+<resources>
+
+    <string name="app_name">CodewifShared</string>
+    <string name="cw_application_error">Application Error</string>
+    <string name="cw_cancel">Cancel</string>
+    <string name="cw_information">Information</string>
+    <string name="cw_ok">OK</string>
+
+</resources>

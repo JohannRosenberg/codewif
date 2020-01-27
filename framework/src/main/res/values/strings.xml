@@ -1,0 +1,23 @@
+<resources>
+
+    <string name="cw_app_name">Codewif</string>
+    <string name="cw_codewif_service_not_installed">The Codewif Service is not installed. This is required if you are doing UI tests or use features that interact with the backend. You will now be taken to Google Play where you can install the app. After installing the Codewif Service app, please restart your app.</string>
+    <string name="cw_details">Details</string>
+    <string name="cw_duration">Duration:</string>
+    <string name="cw_failed">Failed</string>
+    <string name="cw_git_branch">Git Branch:</string>
+    <string name="cw_in_app_testing">In-App Testing</string>
+    <string name="cw_replace_previous_snapshot">Replace the previous snapshot with the current image?</string>
+    <string name="cw_run_tests">Run Tests</string>
+    <string name="cw_skipped">Skipped</string>
+    <string name="cw_snapshot_updated">Snapshot image updated.</string>
+    <string name="cw_stop_testing">Stop testing</string>
+    <string name="cw_succeeded">Succeeded</string>
+    <string name="cw_test_details">Test Details</string>
+    <string name="cw_tests">Tests</string>
+    <string name="cw_test_results">Test Results</string>
+    <string name="cw_tests_to_run">Tests to Run</string>
+    <string name="cw_total">Total</string>
+    <string name="cw_update_snapshot_image">Update snapshot image</string>
+
+</resources>

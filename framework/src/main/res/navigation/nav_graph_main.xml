@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?><!--See important notes in the menu_navigation.xml file.-->
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_main"
+    app:startDestination="@+id/tests_fragment">
+
+    <fragment
+        android:id="@+id/tests_fragment"
+        android:name="com.codewif.framework.ui.main.fragments.tests.TestsFragment"
+        android:label="@string/cw_tests"
+        tools:layout="@layout/cw_fragment_tests">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/test_results_fragment"
+        android:name="com.codewif.framework.ui.main.fragments.testResults.TestResultsFragment"
+        android:label="@string/cw_test_results"
+        tools:layout="@layout/cw_fragment_test_results">
+
+        <action
+            android:id="@+id/action_test_results_to_test_details"
+            app:destination="@id/test_results_details_fragment">
+
+        </action>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/test_results_details_fragment"
+        android:name="com.codewif.framework.ui.main.fragments.testResultsDetails.TestResultsDetailsFragment"
+        android:label="@string/cw_test_details"
+        tools:layout="@layout/cw_fragment_test_results_details">
+
+        <argument
+            android:name="testId"
+            app:argType="string" />
+
+    </fragment>
+
+</navigation>

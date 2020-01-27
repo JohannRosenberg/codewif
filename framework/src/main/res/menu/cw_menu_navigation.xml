@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <!--  WARNING! - The ids you give to menu items are important. For those items that are used to launch a fragment, the id must be the same name
+          as the fragment in the nav_graph_main.xml file, otherwise the menu item will not get highlighted and clicking on the item will do nothing.
+          For instance, in nav_graph_main.xml is the following:
+
+          app:startDestination="@+id/tests_fragment"
+
+          This id matches up with the id for the menu item used to launch the test results fragment. -->
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/tests_fragment"
+            android:icon="@drawable/cw_ic_tests_to_run"
+            android:title="@string/cw_tests_to_run"
+            app:iconTint="@color/cw_navigation_menu_icon_tint" />
+        <item
+            android:id="@+id/test_results_fragment"
+            android:icon="@drawable/cw_ic_test_results"
+            android:title="@string/cw_test_results" />
+    </group>
+
+</menu>

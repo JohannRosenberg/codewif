@@ -1,0 +1,8 @@
+<resources>
+
+    <string name="app_name">Codewif Service</string>
+    <string name="click_here">Click here to view service activity</string>
+    <string name="service_running">Codewif Service running…</string>
+    <string name="terminate_service">Terminate Service</string>
+
+</resources>

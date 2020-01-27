@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme.CodewifTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorControlHighlight">@color/cw_lavendar_light</item>
+    </style>
+
+    <style name="AppTheme.CWAppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.CWPopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+</resources>

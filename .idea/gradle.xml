@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/codewifservice" />
+            <option value="$PROJECT_DIR$/codewifshared" />
+            <option value="$PROJECT_DIR$/framework" />
+            <option value="$PROJECT_DIR$/samples/appTestSample" />
+            <option value="$PROJECT_DIR$/samples/libTestSample/libLauncher" />
+            <option value="$PROJECT_DIR$/samples/libTestSample/myLib" />
+          </set>
+        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
+        <option name="testRunner" value="PLATFORM" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

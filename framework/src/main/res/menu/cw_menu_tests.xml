@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_run_tests"
+        android:icon="@drawable/cw_ic_run_tests"
+        android:title="@string/cw_run_tests"
+        app:iconTint="@color/cw_toolbar_menu_icon_color"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/menu_stop_testing"
+        android:icon="@drawable/cw_ic_stop"
+        android:title="@string/cw_stop_testing"
+        android:visible="false"
+        app:iconTint="@color/cw_toolbar_menu_stop_testing_icon_color"
+        app:showAsAction="always" />
+
+</menu>

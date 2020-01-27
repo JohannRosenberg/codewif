@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../Codewif.iml" filepath="$PROJECT_DIR$/../Codewif.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../app/app.iml" filepath="$PROJECT_DIR$/../app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../samples/appTestSample/appTestSample.iml" filepath="$PROJECT_DIR$/../samples/appTestSample/appTestSample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/codewifdb.iml" filepath="$PROJECT_DIR$/codewifdb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../libraries/framework/framework.iml" filepath="$PROJECT_DIR$/../libraries/framework/framework.iml" />
+    </modules>
+  </component>
+</project>
