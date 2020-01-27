@@ -13,6 +13,7 @@ import com.codewif.shared.eventBus.EventBusTypes
 import com.codewif.shared.utils.FileUtils
 import com.codewif.testing.unittests.R
 import java.io.ByteArrayOutputStream
+import java.io.File
 
 
 /**
@@ -21,21 +22,31 @@ import java.io.ByteArrayOutputStream
 class FrameworkUnitTests : TestSetup() {
     init {
         val ctx = this
+        lateinit var imageFilename: String
 
         addTest(UnitTest(testName = "Store cat-1 to cache").testToRunSync {
             val testResult = TestResult()
 
             val id: Int = R.drawable.cat_1
             val bitmap: Bitmap = BitmapFactory.decodeResource(App.ctx.resources, id)
-
             val stream = ByteArrayOutputStream()
             bitmap.compress(Bitmap.CompressFormat.WEBP, 100, stream)
-            //val byteArray: ByteArray = stream.toByteArray()
 
             val fileUtils = FileUtils()
-            fileUtils.saveUITestImageToDisk(stream, TestRepository.projectId, "Store cat-1 to cache")
+            imageFilename = fileUtils.saveUITestImageToDisk(stream, TestRepository.projectId, "Store cat-1 to cache")
 
             testResult.succeeded = true
+            testResult
+        })
+
+        addTest(UnitTest(testName = "Rename file").testToRunSync {
+            val testResult = TestResult()
+
+            val newFilename = File(imageFilename).parentFile.toString() + "/cat-2.webp"
+            val fileUtils = FileUtils()
+            fileUtils.renameFile(imageFilename, newFilename)
+
+            testResult.succeeded = File(newFilename).exists()
             testResult
         })
 
