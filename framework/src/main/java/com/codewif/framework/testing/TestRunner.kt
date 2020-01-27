@@ -312,7 +312,7 @@ open class TestRunner {
                                             unitTest.getTestToRunAsync()?.invoke { result ->
                                                 testResult = result
 
-                                                GlobalScope.launch(Dispatchers.IO) {
+                                                runBlocking {
                                                     doOnTestCompleted(testInfo, testResult, startTime, Date())
                                                 }
                                             }
