@@ -9,6 +9,7 @@ import com.codewif.shared.App.Companion.currentActivity
 import com.codewif.shared.service.models.UITestInfoBase
 import com.codewif.shared.utils.FileUtils
 import java.io.ByteArrayOutputStream
+import java.io.File
 import java.util.*
 
 
@@ -47,6 +48,16 @@ class UITester {
                 testInfo.uiTestInfoPrevious?.hashcode == testResults.uiTestInfoCurrent?.hashcode -> {
                     testResults.succeeded = true
                     testResults.uiTestInfoCurrent?.snapshotUrl = testInfo.uiTestInfoPrevious?.snapshotUrl
+
+                    // Even though the test passed, it is possible that the snapshot got deleted from disk.
+                    // If it doesn't exist, store it.
+
+                    if (!File(testInfo.uiTestInfoPrevious?.snapshotUrl).exists()) {
+                        testInfo.uiTestInfoPrevious?.snapshotUrl?.let { filename ->
+                            val fileUtils = FileUtils()
+                            fileUtils.storeDataToDisk(TestRepository.projectId, bufferOut, File(filename))
+                        }
+                    }
                 }
                 else -> {
                     saveUITestImageToDisk(testInfo, bufferOut)

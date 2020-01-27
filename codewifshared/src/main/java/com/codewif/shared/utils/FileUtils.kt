@@ -28,6 +28,16 @@ class FileUtils {
         val folder = createCodewifProjectSnapshotFolder(projectId)
         val fileOut = File(folder, filename)
 
+        return storeDataToDisk(streamOut, fileOut)
+    }
+
+
+    fun storeDataToDisk(projectId: String, streamOut: ByteArrayOutputStream, fileOut: File) {
+        createCodewifProjectSnapshotFolder(projectId)
+        storeDataToDisk(streamOut, fileOut)
+    }
+
+    private fun storeDataToDisk(streamOut: ByteArrayOutputStream, fileOut: File): String {
         try {
             fileOut.createNewFile()
         } catch (exception: Exception) {
@@ -40,7 +50,6 @@ class FileUtils {
 
         return fileOut.toString()
     }
-
 
     private fun createCodewifProjectSnapshotFolder(projectId: String): File {
         val f = File(
