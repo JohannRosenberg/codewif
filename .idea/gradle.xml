@@ -14,6 +14,7 @@
             <option value="$PROJECT_DIR$/samples/appTestSample" />
             <option value="$PROJECT_DIR$/samples/libTestSample/libLauncher" />
             <option value="$PROJECT_DIR$/samples/libTestSample/myLib" />
+            <option value="$PROJECT_DIR$/unittests" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
