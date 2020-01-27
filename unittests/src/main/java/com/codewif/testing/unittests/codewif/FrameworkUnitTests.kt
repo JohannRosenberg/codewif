@@ -7,6 +7,7 @@ import com.codewif.framework.eventBus.EventBusController
 import com.codewif.framework.models.TestResult
 import com.codewif.framework.models.UnitTest
 import com.codewif.framework.testing.TestSetup
+import com.codewif.framework.utils.formatToDuration
 import com.codewif.shared.App
 import com.codewif.shared.eventBus.EventBusControllerBase
 import com.codewif.shared.eventBus.EventBusTypes
@@ -48,6 +49,12 @@ class FrameworkUnitTests : TestSetup() {
 
             testResult.succeeded = File(newFilename).exists()
             testResult
+        })
+
+        addTest(UnitTest("formatToDuration").testToRunAsync { callback ->
+            val testResult = TestResult()
+            testResult.succeeded = (9_930_123L).formatToDuration() == "2:45:30.123"
+            callback.invoke(testResult)
         })
 
         addTest(UnitTest("subscribeToTestingStateChange").testToRunAsync { callback ->
