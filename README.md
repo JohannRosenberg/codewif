@@ -1,6 +1,8 @@
 ![graphics/codewif_icon_with_text_400x104.png](graphics/codewif_icon_with_text_400x104.png)
 
-[![Release](https://jitpack.io/v/com.codewif/codewif.svg)](https://jitpack.io/#com.codewif/codewif)
+[![Release](https://jitpack.io/v/johannblake/codewif.svg)](https://jitpack.io/#johannblake/codewif)
+
+**This is currently under development and should be done by the end of the week.**
 
 # Overview
 Codewif is an Android library framework to allow you to perform in-app testing of Android apps and libraries. It offers the following benefits over the traditional way of testing apps:
@@ -211,7 +213,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    codewifImplementation 'com.codewif:codewif:1.0.4'
+    codewifImplementation 'com.codewif:codewif:1.+'
 }
 ```
 Do not give your variant a name that starts with ```test``` as that is reserved by Android for its own testing purposes.
