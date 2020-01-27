@@ -311,13 +311,11 @@ open class TestRunner {
                                         withContext(Dispatchers.IO) {
                                             unitTest.getTestToRunAsync()?.invoke { result ->
                                                 testResult = result
+                                                doOnTestCompleted(testInfo, testResult, startTime, Date())
                                             }
                                         }
                                     } catch (exception: Exception) {
                                         testResult = TestResult("Exception: ${exception.message}")
-
-                                    } finally {
-                                        doOnTestCompleted(testInfo, testResult, startTime, Date())
                                     }
                                 }
                             }
