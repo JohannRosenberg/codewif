@@ -311,7 +311,10 @@ open class TestRunner {
                                         withContext(Dispatchers.IO) {
                                             unitTest.getTestToRunAsync()?.invoke { result ->
                                                 testResult = result
-                                                doOnTestCompleted(testInfo, testResult, startTime, Date())
+
+                                                GlobalScope.launch(Dispatchers.IO) {
+                                                    doOnTestCompleted(testInfo, testResult, startTime, Date())
+                                                }
                                             }
                                         }
                                     } catch (exception: Exception) {
