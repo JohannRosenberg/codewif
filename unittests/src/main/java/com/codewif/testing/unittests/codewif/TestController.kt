@@ -8,21 +8,30 @@ import kotlinx.coroutines.launch
 /**
  * This is where you configure the test runner.
  */
-object TestController {
-    fun runTests(context: Context) {
+class TestController {
+    companion object {
+        private var initialized = false
 
-        val mainScope = MainScope()
+        fun runTests(context: Context) {
 
-        mainScope.launch {
-            TestRunner
-                .setAppContext(context)
-                .setProjectId("Codewif Framework Library")
-                .setLibraryPackageName(com.codewif.framework.BuildConfig.LIBRARY_PACKAGE_NAME)
-                .setVersionName(com.codewif.framework.BuildConfig.VERSION_NAME)
-                .setGitBranchName("unit_tests")
-                .displayTestResults()
-                .addTestSetups(::FrameworkUnitTests)
-                .runTests()
+            if (initialized)
+                return
+
+            initialized = true
+
+            val mainScope = MainScope()
+
+            mainScope.launch {
+                TestRunner
+                    .setAppContext(context)
+                    .setProjectId("Codewif Framework Library")
+                    .setLibraryPackageName(com.codewif.framework.BuildConfig.LIBRARY_PACKAGE_NAME)
+                    .setVersionName(com.codewif.framework.BuildConfig.VERSION_NAME)
+                    .setGitBranchName("unit_tests")
+                    .displayTestResults()
+                    .addTestSetups(::FrameworkUnitTests)
+                    .runTests()
+            }
         }
     }
 }
