@@ -87,6 +87,13 @@ open class TestRunner {
         }
 
         /**
+         * Returns the context of the app under test.
+         */
+        fun getAppContext(): Context {
+            return appContext
+        }
+
+        /**
          * Sets the project id that uniquely identifies the app being tested. This is required and should be called by the client
          * after calling setAppContext. The id should be something that remains unchanged for the life of your app. Avoid using
          * things like the application id of your app or some package name, which could potentially change over time. If your
