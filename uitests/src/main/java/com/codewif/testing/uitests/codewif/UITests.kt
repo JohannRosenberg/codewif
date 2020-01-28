@@ -9,7 +9,7 @@ class UITests : TestSetup() {
     init {
         addTest(UnitTest("Tests Screen").uiTestToRun {
             UITestController.displayTestsScreen()
-            delay(800)
+            delay(1000)
         })
     }
 }
