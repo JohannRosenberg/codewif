@@ -5,9 +5,11 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.codewif.framework.R
 import com.codewif.shared.App
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 
 class UITestController {
-    companion object {
+    companion object : CoroutineScope by CoroutineScope(Dispatchers.Main) {
         private var navController: NavController
 
         init {

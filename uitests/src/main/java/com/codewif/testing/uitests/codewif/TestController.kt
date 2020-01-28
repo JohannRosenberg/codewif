@@ -30,7 +30,7 @@ class TestController {
                     .setGitBranchName("ui_tests")
                     .addTestSetups(::UITests)
                     //.displayTests()
-                    //.showTestResultsAfterTesting()
+                    .showTestResultsAfterTesting()
                     .runTests()
             }
         }
