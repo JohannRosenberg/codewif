@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3">
+    <dataSet config=":codewifshared" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~">
+        <source path="/Users/johann/Work/Dev/codewif/codewifshared/build/intermediates/library_assets/debug/out" />
+    </dataSet>
+    <dataSet config=":framework" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~">
+        <source path="/Users/johann/Work/Dev/codewif/framework/build/intermediates/library_assets/debug/out" />
+    </dataSet>
+    <dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~">
+        <source path="/Users/johann/Work/Dev/codewif/uitests/src/main/assets" />
+        <source path="/Users/johann/Work/Dev/codewif/uitests/build/intermediates/shader_assets/debug/compileDebugShaders/out" />
+    </dataSet>
+    <dataSet config="debug" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~">
+        <source path="/Users/johann/Work/Dev/codewif/uitests/src/debug/assets" />
+    </dataSet>
+</merger>

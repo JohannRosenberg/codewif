@@ -246,6 +246,11 @@ open class TestRunner {
         }
 
 
+        fun getCurrentActivity(): Activity? {
+            return App.currentActivity
+        }
+
+
         /**
          * Runs all the tests defined in each test setup.
          */
@@ -337,13 +342,17 @@ open class TestRunner {
                                 val startTime = Date()
 
                                 try {
+                                    withContext(Dispatchers.IO) {
+                                        testResult = unitTest.getTestToRunSync()?.invoke() as TestResult
+                                    }
 
-                                    suspendCoroutine<Unit> { continuation ->
+
+/*                                    suspendCoroutine<Unit> { continuation ->
                                         launch(Dispatchers.IO) {
                                             testResult = unitTest.getTestToRunSync()?.invoke() as TestResult
                                             continuation.resume(Unit)
                                         }
-                                    }
+                                    }*/
                                 } catch (exception: Exception) {
                                     testResult = TestResult("Exception: ${exception.message}")
                                 } finally {
@@ -356,13 +365,18 @@ open class TestRunner {
                                 var terminate = false
 
                                 try {
-                                    suspendCoroutine<Unit> { continuation ->
+                                    withContext(Dispatchers.Main) {
+                                        unitTest.getUITestToRun()?.invoke()
+                                        testResult = UITester.testUI(testInfo)
+                                    }
+
+/*                                    suspendCoroutine<Unit> { continuation ->
                                         launch(Dispatchers.Main) {
                                             unitTest.getUITestToRun()?.invoke()
                                             testResult = UITester.testUI(testInfo)
                                             continuation.resume(Unit)
                                         }
-                                    }
+                                    }*/
                                 } catch (exception: CreatingFileException) {
                                     terminate = true
                                     jobRunner.cancel()

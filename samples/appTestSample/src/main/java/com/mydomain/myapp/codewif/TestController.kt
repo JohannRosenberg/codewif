@@ -25,7 +25,7 @@ object TestController {
                     // Do something with the JSON data.
                 }
                 .sendTestResultsToBackend(url = "https://hookb.in/dmPG11m3DBFGDEK1Ym7l")
-                .closeUIWhenTesting()
+                //.closeUIWhenTesting()
                 //.displayTestResults()
                 .showTestResultsAfterTesting()
                 .addTestSetups(::UITests, ::MathUnitTests, ::StringUnitTests)

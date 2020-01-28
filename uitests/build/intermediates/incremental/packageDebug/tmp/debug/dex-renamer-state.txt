@@ -1,0 +1,4 @@
+#Mon Jan 27 20:42:02 CET 2020
+base.0=/Users/johann/Work/Dev/codewif/uitests/build/intermediates/dex/debug/mergeDexDebug/out/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
