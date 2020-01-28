@@ -9,6 +9,7 @@ class MathUnitTests : TestSetup() {
 
     init {
         addTest(UnitTest("Add numbers").testToRunSync {
+            delay(300)
             val testResult = TestResult()
 
             // Do your test here. We'll fake the test and just return true.
@@ -26,6 +27,7 @@ class MathUnitTests : TestSetup() {
         })
 
         addTest(UnitTest(testName = "Subtract numbers", skipTest = true).testToRunSync {
+
             val testResult = TestResult()
             testResult.succeeded = true
             testResult
@@ -52,7 +54,7 @@ class MathUnitTests : TestSetup() {
 
         addTest(UnitTest("Compute Prime").testToRunSync {
             // Simulate a long running process
-            delay(300)
+            delay(600)
             val testResult = TestResult()
             testResult.succeeded = true
             testResult

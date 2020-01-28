@@ -1,13 +1,13 @@
 package com.codewif.framework.testing
 
 import android.graphics.Bitmap
-import android.view.View
 import com.codewif.framework.da.local.TestRepository
 import com.codewif.framework.models.TestInfo
 import com.codewif.framework.models.TestResult
 import com.codewif.shared.App.Companion.currentActivity
 import com.codewif.shared.service.models.UITestInfoBase
 import com.codewif.shared.utils.FileUtils
+import com.jraska.falcon.Falcon
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.util.*
@@ -28,9 +28,7 @@ class UITester {
             // Create a snapshot. The width and height is half the screen height to save on disk space as well as the amount of
             // memory needed to load the snapshot into imageviews.
 
-            val view = currentActivity?.window?.decorView?.rootView as View
-            view.isDrawingCacheEnabled = true
-            var bitmap: Bitmap = view.drawingCache
+            var bitmap = Falcon.takeScreenshotBitmap(currentActivity)
             bitmap = Bitmap.createScaledBitmap(bitmap, bitmap.width / 2, bitmap.height / 2, false)
 
             val bufferOut = ByteArrayOutputStream()

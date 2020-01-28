@@ -87,6 +87,13 @@ open class TestRunner {
         }
 
         /**
+         * Returns the context of the app under test.
+         */
+        fun getAppContext(): Context {
+            return appContext
+        }
+
+        /**
          * Sets the project id that uniquely identifies the app being tested. This is required and should be called by the client
          * after calling setAppContext. The id should be something that remains unchanged for the life of your app. Avoid using
          * things like the application id of your app or some package name, which could potentially change over time. If your
@@ -240,9 +247,21 @@ open class TestRunner {
         }
 
 
+        /**
+         * Adds a test class that contains tests that the TestRunner will execute.
+         * @param testSetups One or more test classes. Example: ::MathUnitTests, ::StringUnitTests
+         */
         suspend fun addTestSetups(vararg testSetups: () -> TestSetup): Companion {
             TestRepository.addTestSetups(*testSetups)
             return TestRunner
+        }
+
+
+        /**
+         * Returns a reference to the currently activity that is being displayed.
+         */
+        fun getCurrentActivity(): Activity? {
+            return App.currentActivity
         }
 
 
