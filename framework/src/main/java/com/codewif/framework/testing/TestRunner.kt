@@ -356,17 +356,9 @@ open class TestRunner {
                                 val startTime = Date()
 
                                 try {
-
-                                    suspendCoroutine<Unit> { continuation ->
-                                        launch(Dispatchers.IO) {
-                                            testResult = unitTest.getTestToRunSync()?.invoke() as TestResult
-                                            continuation.resume(Unit)
-                                        }
-                                    }
-
-/*                                    withContext(Dispatchers.IO) {
+                                    withContext(Dispatchers.IO) {
                                         testResult = unitTest.getTestToRunSync()?.invoke() as TestResult
-                                    }*/
+                                    }
                                 } catch (exception: Exception) {
                                     testResult = TestResult("Exception: ${exception.message}")
                                 } finally {
@@ -379,12 +371,9 @@ open class TestRunner {
                                 var terminate = false
 
                                 try {
-                                    suspendCoroutine<Unit> { continuation ->
-                                        launch(Dispatchers.Main) {
-                                            unitTest.getUITestToRun()?.invoke()
-                                            testResult = UITester.testUI(testInfo)
-                                            continuation.resume(Unit)
-                                        }
+                                    withContext(Dispatchers.Main) {
+                                        unitTest.getUITestToRun()?.invoke()
+                                        testResult = UITester.testUI(testInfo)
                                     }
                                 } catch (exception: CreatingFileException) {
                                     terminate = true
@@ -397,7 +386,6 @@ open class TestRunner {
                                     if (!terminate)
                                         doOnTestCompleted(testInfo, testResult, startTime, Date(), false)
                                 }
-
                             }
                             else -> {
                                 throw NoTestDefinedException("${testInfo.testName}, ${unitTestSetup.key}")

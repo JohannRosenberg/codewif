@@ -62,6 +62,7 @@ MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/johann/.gradle/cac
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/johann/.gradle/caches/transforms-2/files-2.1/87448bd231e82689c523e2144b195f9e/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.print:print:1.0.0] /Users/johann/.gradle/caches/transforms-2/files-2.1/0997ae450be89358c49f3430f78f0ea2/print-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.multidex:multidex:2.0.0] /Users/johann/.gradle/caches/transforms-2/files-2.1/2dedc4b6cab5a9b45446d4588c0a131b/multidex-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.jraska:falcon:2.1.1] /Users/johann/.gradle/caches/transforms-2/files-2.1/fcc6325ed496cc5dbbe62c1c04d2e291/falcon-2.1.1/AndroidManifest.xml:2:1-11:12
 INJECTED from /Users/johann/Work/Dev/codewif/uitests/src/main/AndroidManifest.xml:2:1-21:12
 INJECTED from /Users/johann/Work/Dev/codewif/uitests/src/main/AndroidManifest.xml:2:1-21:12
 INJECTED from /Users/johann/Work/Dev/codewif/uitests/src/main/AndroidManifest.xml:2:1-21:12
@@ -247,6 +248,8 @@ MERGED from [androidx.print:print:1.0.0] /Users/johann/.gradle/caches/transforms
 MERGED from [androidx.print:print:1.0.0] /Users/johann/.gradle/caches/transforms-2/files-2.1/0997ae450be89358c49f3430f78f0ea2/print-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.multidex:multidex:2.0.0] /Users/johann/.gradle/caches/transforms-2/files-2.1/2dedc4b6cab5a9b45446d4588c0a131b/multidex-2.0.0/AndroidManifest.xml:20:5-43
 MERGED from [androidx.multidex:multidex:2.0.0] /Users/johann/.gradle/caches/transforms-2/files-2.1/2dedc4b6cab5a9b45446d4588c0a131b/multidex-2.0.0/AndroidManifest.xml:20:5-43
+MERGED from [com.jraska:falcon:2.1.1] /Users/johann/.gradle/caches/transforms-2/files-2.1/fcc6325ed496cc5dbbe62c1c04d2e291/falcon-2.1.1/AndroidManifest.xml:7:5-9:41
+MERGED from [com.jraska:falcon:2.1.1] /Users/johann/.gradle/caches/transforms-2/files-2.1/fcc6325ed496cc5dbbe62c1c04d2e291/falcon-2.1.1/AndroidManifest.xml:7:5-9:41
 INJECTED from /Users/johann/Work/Dev/codewif/uitests/src/main/AndroidManifest.xml
 INJECTED from /Users/johann/Work/Dev/codewif/uitests/src/main/AndroidManifest.xml
 	android:targetSdkVersion

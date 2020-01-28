@@ -3,7 +3,7 @@
     package="com.codewif.testing.uitests"
     android:targetSandboxVersion="2"
     android:versionCode="1"
-    android:versionName="1.0">
+    android:versionName="1.0" >
 
     <uses-sdk
         android:minSdkVersion="19"
@@ -22,8 +22,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:testOnly="true"
-        android:theme="@style/AppTheme">
-        <activity android:name="com.codewif.testing.uitests.MainActivity">
+        android:theme="@style/AppTheme" >
+        <activity android:name="com.codewif.testing.uitests.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
