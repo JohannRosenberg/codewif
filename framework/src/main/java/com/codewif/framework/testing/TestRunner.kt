@@ -240,12 +240,19 @@ open class TestRunner {
         }
 
 
+        /**
+         * Adds a test class that contains tests that the TestRunner will execute.
+         * @param testSetups One or more test classes. Example: ::MathUnitTests, ::StringUnitTests
+         */
         suspend fun addTestSetups(vararg testSetups: () -> TestSetup): Companion {
             TestRepository.addTestSetups(*testSetups)
             return TestRunner
         }
 
 
+        /**
+         * Returns a reference to the currently activity that is being displayed.
+         */
         fun getCurrentActivity(): Activity? {
             return App.currentActivity
         }
