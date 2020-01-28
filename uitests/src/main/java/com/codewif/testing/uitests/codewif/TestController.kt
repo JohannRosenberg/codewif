@@ -29,7 +29,6 @@ class TestController {
                     .setVersionName(com.codewif.framework.BuildConfig.VERSION_NAME)
                     .setGitBranchName("ui_tests")
                     .addTestSetups(::UITests)
-                    //.displayTests()
                     .showTestResultsAfterTesting()
                     .runTests()
             }
