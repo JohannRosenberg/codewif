@@ -2,6 +2,7 @@ package com.codewif.testing.uitests.codewif
 
 import android.view.Gravity
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.recyclerview.widget.RecyclerView
 import com.codewif.framework.R
 import com.codewif.framework.models.UnitTest
 import com.codewif.framework.testing.TestRunner
@@ -35,16 +36,22 @@ class UITests : TestSetup() {
             delay(600)
         })
 
-/*        addTest(UnitTest("Dummy test 1").uiTestToRun {
-            delay(600)
+        addTest(UnitTest("Test results screen").uiTestToRun {
+            TestRunner.displayTestResults()
+            delay(500)
+            //TestRunner.getCurrentActivity()?.findViewById<TextView>(R.id.tv_duration)?.text = "00:3.456"
+            //delay(1000)
         })
 
-        addTest(UnitTest("Dummy test 2").uiTestToRun {
-            delay(600)
+        addTest(UnitTest("Test details screen").uiTestToRun {
+            val rvTests = TestRunner.getCurrentActivity()?.findViewById<RecyclerView>(R.id.rv_tests)
+            rvTests?.findViewHolderForAdapterPosition(0)?.itemView?.performClick()
+
+            delay(1000)
         })
 
-        addTest(UnitTest("Dummy test 3").uiTestToRun {
-            delay(600)
-        })*/
+        addTest(UnitTest("Last dummy test").uiTestToRun {
+            delay(500)
+        })
     }
 }

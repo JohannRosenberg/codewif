@@ -371,10 +371,16 @@ open class TestRunner {
                                 var terminate = false
 
                                 try {
-                                    withContext(Dispatchers.Main) {
+                                    runBlocking(Dispatchers.Main) {
                                         unitTest.getUITestToRun()?.invoke()
                                         testResult = UITester.testUI(testInfo)
                                     }
+
+
+/*                                    withContext(Dispatchers.Main) {
+                                        unitTest.getUITestToRun()?.invoke()
+                                        testResult = UITester.testUI(testInfo)
+                                    }*/
                                 } catch (exception: CreatingFileException) {
                                     terminate = true
                                     jobRunner.cancel()
