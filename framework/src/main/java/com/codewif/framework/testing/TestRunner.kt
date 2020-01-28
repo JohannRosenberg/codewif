@@ -359,14 +359,6 @@ open class TestRunner {
                                     withContext(Dispatchers.IO) {
                                         testResult = unitTest.getTestToRunSync()?.invoke() as TestResult
                                     }
-
-
-/*                                    suspendCoroutine<Unit> { continuation ->
-                                        launch(Dispatchers.IO) {
-                                            testResult = unitTest.getTestToRunSync()?.invoke() as TestResult
-                                            continuation.resume(Unit)
-                                        }
-                                    }*/
                                 } catch (exception: Exception) {
                                     testResult = TestResult("Exception: ${exception.message}")
                                 } finally {
@@ -383,14 +375,6 @@ open class TestRunner {
                                         unitTest.getUITestToRun()?.invoke()
                                         testResult = UITester.testUI(testInfo)
                                     }
-
-/*                                    suspendCoroutine<Unit> { continuation ->
-                                        launch(Dispatchers.Main) {
-                                            unitTest.getUITestToRun()?.invoke()
-                                            testResult = UITester.testUI(testInfo)
-                                            continuation.resume(Unit)
-                                        }
-                                    }*/
                                 } catch (exception: CreatingFileException) {
                                     terminate = true
                                     jobRunner.cancel()
@@ -402,7 +386,6 @@ open class TestRunner {
                                     if (!terminate)
                                         doOnTestCompleted(testInfo, testResult, startTime, Date(), false)
                                 }
-
                             }
                             else -> {
                                 throw NoTestDefinedException("${testInfo.testName}, ${unitTestSetup.key}")
