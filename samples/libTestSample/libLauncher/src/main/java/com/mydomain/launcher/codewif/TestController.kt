@@ -22,7 +22,6 @@ object TestController {
             TestRunner
                 .setAppContext(context)
                 .setProjectId("My Cool Library")
-                //.setAppName()
                 .setLibraryPackageName(com.mydomain.mylib.BuildConfig.LIBRARY_PACKAGE_NAME)
                 .setVersionName(com.mydomain.mylib.BuildConfig.VERSION_NAME)
                 .setGitBranchName("unit_tests")
