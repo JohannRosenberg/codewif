@@ -321,22 +321,47 @@ When you run an asynchronous test, your test is provided with a callback paramet
 <br><br>
 
 #### UI Tests
-This is a class to perform a single UI test on the main activity:
+This is a class to performs a number of UI tests:
 
 ```kotlin
 class MathUnitTests : TestSetup() {
     init {
-        addTest(UnitTest("Main Activity").uiTestToRun {
-            // Write code here to navigate your app to the screen you want to test.
-            // Add an optional delay to allow the app to complete its loading state.
-            delay(200)
+        addTest(UnitTest("Main Activity at Start").uiTestToRun {
+            val intent = Intent(TestRunner.getAppContext(), MainActivity::class.java)
+            ContextCompat.startActivity(TestRunner.getAppContext(), intent, null)
+            delay(500)
+        })
+
+        addTest(UnitTest("Sign in failed").uiTestToRun {
+            TestRunner.getCurrentActivity()?.findViewById<TextView>(R.id.et_username)?.text = "somedude"
+            TestRunner.getCurrentActivity()?.findViewById<TextView>(R.id.et_password)?.text = "abracadabra"
+            TestRunner.getCurrentActivity()?.findViewById<Button>(R.id.btn_signin)?.performClick()
+            delay(500)
+        })
+
+        addTest(UnitTest("Account Settings Screen").uiTestToRun {
+            (TestRunner.getCurrentActivity() as MainActivity).alertDialogSignIn.dismiss()
+            TestRunner.getCurrentActivity()?.findViewById<TextView>(R.id.et_username)?.text = "john"
+            TestRunner.getCurrentActivity()?.findViewById<TextView>(R.id.et_password)?.text = "123456"
+            TestRunner.getCurrentActivity()?.findViewById<Button>(R.id.btn_signin)?.performClick()
+            delay(500)
         })
     }
 }
 ```
 <br>
 
-To create a UI test, use the ```uiTestToRun``` method. In your test implementation, you write whatever code is necessary to navigate to the screen you want to test. You may also need to add code that does things like scrolling your screen to some position, enabling or disabling checkboxes, entering text into EditText fields and so on. In many cases, just adding a delay for a few hundred milliseconds will suffice to allow the activity to complete its initialization.
+To create a UI test, use the ```uiTestToRun``` method. In your test implementation, you write whatever code is necessary to navigate to the screen you want to test. You may also need to add code that does things like scrolling your screen to some position, enabling or disabling checkboxes, entering text into EditText fields and so on. After you have setup your UI to the state that you want it tested in, you should add a delay as the last thing before returning. How much of a delay you need depends on how long it takes for your UI to appear in a stable state. You can try using a 1 second delay. If the test fails because the UI needs more time to stabilize, you can increase the value. Keep in mind that different devices with different processing speeds may require more time, so make sure you have enough delay to cover all the devices you are testing on.
+
+It should also be noted that although you can set the ```skiptTest``` parameter to ```true``` to skip a UI test, you should avoid this. In many cases, a UI test (other than the first one) will usually require that previous tests be carried out first. If you skip a test, the app's state may not be set correctly and tests will fail after the skipped test. Normally you write UI tests in such a way that when one test has completed, you only add additional code to take you to the next UI state. It's usually a lot more work to create a completely independent UI test that can get your app to a particular state to be tested in. One exception to this is when you open a new activity, which almost always results in an initial starting point. Because most of your UI tests are dependent on previous tests, you will not likely be able to click on a single test on the Test screen and see it pass. It will almost always fail.
+
+If your test needs to have a reference to the current activity being displayed, you can use:
+
+```TestRunner.getCurrentActivity()```
+
+Codewif tracks which activities are created and destroyed and which on is currently being displayed. Of course, if your app is an Android app being tested, you can use your own code if it provides access to the activities that you are testing.
+
+If you have alert dialogs or other components that appear as a modal view and if you want to test them, your code will have to make public functions or properties available that will allow your test code to access them. In traditional code, references to alert dialogs are usually internal and kept private, so this makes it impossible to access them. If you are building a new app and want to test for these modal components, you should consider providing public methods that allow your code to access them. In Kotlin, if you want to make these methods publicly accessible to your test code, you can use the ```internal``` keyword on a method that returns a reference to the component, provided that your test code is part of the same module. If your app is not an Android library, you probably are better off just making these methods public for test purposes. 
 
 Once you have the screen in the state you want to have it tested in, you simply return. Upon returning, Codewif will automatically take a screenshot of your app's screen and then compare it with the previous snapshot (if one exists). If no previous snapshot of the screen exists for the test, the test will be considered to have passed.
 
@@ -372,30 +397,42 @@ If you have a large project with a lot of tests, you might want to consider brea
 Now that you have your test classes, you need to add them to your test controller class. In the TestController class you add references to your test classes using the ```addTestSetups``` method of the TestRunner object. Here is an example:
 
 ```kotlin
+import android.content.Context
+import com.codewif.framework.testing.TestRunner
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
+
 /**
  * This is where you configure the test runner.
  */
-object TestController {
-    fun runTests(context: Context) {
+class TestController {
+    companion object {
+        private var initialized = false
 
-        val mainScope = MainScope()
+        fun runTests(context: Context) {
 
-        mainScope.launch {
-            TestRunner
-                .setAppContext(context)
-                .setProjectId("Codewif Sample App")
-                .setAppName()
-                .setVersionName(com.codewif.sample.BuildConfig.VERSION_NAME)
-                .setGitBranchName("unit_tests")
-                .setOnTestingCompletedListener { succeeded ->
-                    val jsonFailed = TestRunner.exportFailedTestsToJson()
-                    // Do something with the JSON data.
-                }
-                .sendTestResultsToBackend(url = "https://hookb.in/dmPG11m3DBFGDEK1Ym7l")
-                .displayTestResults()
-                .showTestResultsAfterTesting()
-                .addTestSetups(::MathUnitTests, ::StringUnitTests)
-                .runTests()
+            if (initialized)
+                return
+
+            initialized = true
+            val mainScope = MainScope()
+
+            mainScope.launch {
+                TestRunner
+                    .setAppContext(context)
+                    .setProjectId("Codewif Sample App")
+                    .setAppName()
+                    .setVersionName(com.codewif.sample.BuildConfig.VERSION_NAME)
+                    .setGitBranchName("unit_tests")
+                    .setOnTestingCompletedListener { succeeded ->
+                        val jsonFailed = TestRunner.exportFailedTestsToJson()
+                        // Do something with the JSON data.
+                    }
+                    .sendTestResultsToBackend(url = "https://hookb.in/dmPG11m3DBFGDEK1Ym7l")
+                    .showTestResultsAfterTesting()
+                    .addTestSetups(::UITests, ::MathUnitTests, ::StringUnitTests)
+                    .runTests()
+            }
         }
     }
 }
