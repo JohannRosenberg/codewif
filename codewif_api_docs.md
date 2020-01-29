@@ -25,7 +25,8 @@ This is primary class that your app or library will communicate with to setup an
 | displayTestResults             | Displays the screen that lists all the tests that are running or ran.                            | 
 | displayTests                   | Displays the screen that lists all the tests that can be run.                                    | 
 | exportAllTestsToJson           | Creates a JSON formatted report containing all the tests.                                        | 
-| exportFailedTestsToJson        | Creates a JSON formatted report containing only the tests that failed.                           | 
+| exportFailedTestsToJson        | Creates a JSON formatted report containing only the tests that failed.                           |
+| getCurrentActivity             | Returns a reference to the current activity that is displayed (if any)                           | 
 | runTests                       | Runs one or more tests. **REQUIRED**                                                             | 
 | sendTestResultsToBackend       | Sends the test results to a backend server.                                                      | 
 | setAppContext                  | Provides Codewif access to your app under test. **REQUIRED**                                     | 
@@ -108,6 +109,14 @@ Same as the ```exportAllTestsToJson``` except only the failed tests are exported
 ```kotlin
 // Example
 val testResultsJson = TestRunner.exportFailedTestsToJson()
+```
+
+### getCurrentActivity
+Returns a reference to the current activity that is being displayed, or null if no activity is being displayed.
+
+```kotlin
+// Example
+TestRunner.getCurrentActivity()
 ```
 
 ### runTests
