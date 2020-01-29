@@ -1,6 +1,7 @@
 package com.codewif.testing.uitests.codewif
 
 import android.view.Gravity
+import android.widget.TextView
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.codewif.framework.R
@@ -39,7 +40,6 @@ class UITests : TestSetup() {
         addTest(UnitTest("Test results screen").uiTestToRun {
             TestRunner.displayTestResults()
             delay(500)
-            //TestRunner.getCurrentActivity()?.findViewById<TextView>(R.id.tv_duration)?.text = "00:3.456"
             //delay(1000)
         })
 
@@ -48,10 +48,9 @@ class UITests : TestSetup() {
             rvTests?.findViewHolderForAdapterPosition(0)?.itemView?.performClick()
 
             delay(1000)
-        })
+            TestRunner.getCurrentActivity()?.findViewById<TextView>(R.id.tv_duration)?.text = "00:3.456"
 
-        addTest(UnitTest("Last dummy test").uiTestToRun {
-            delay(500)
+            delay(1000)
         })
     }
 }

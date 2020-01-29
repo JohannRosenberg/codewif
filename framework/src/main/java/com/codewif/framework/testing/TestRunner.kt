@@ -356,7 +356,7 @@ open class TestRunner {
                                 val startTime = Date()
 
                                 try {
-                                    withContext(Dispatchers.IO) {
+                                    runBlocking(Dispatchers.IO) {
                                         testResult = unitTest.getTestToRunSync()?.invoke() as TestResult
                                     }
                                 } catch (exception: Exception) {
@@ -375,12 +375,6 @@ open class TestRunner {
                                         unitTest.getUITestToRun()?.invoke()
                                         testResult = UITester.testUI(testInfo)
                                     }
-
-
-/*                                    withContext(Dispatchers.Main) {
-                                        unitTest.getUITestToRun()?.invoke()
-                                        testResult = UITester.testUI(testInfo)
-                                    }*/
                                 } catch (exception: CreatingFileException) {
                                     terminate = true
                                     jobRunner.cancel()
