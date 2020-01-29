@@ -258,9 +258,11 @@ Although you can name and place the stub file anywhere in your project where it 
 /**
  * This is a stub file for testing the app with Codewif.
  */
-object TestController {
-    fun runTests(context: Context) {
-        // No further code is added here.
+class TestController {
+     companion object {
+		fun runTests(context: Context) {
+			// No further code is added here.
+		}
     }
 }
 ```
