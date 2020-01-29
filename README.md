@@ -260,9 +260,9 @@ Although you can name and place the stub file anywhere in your project where it 
  */
 class TestController {
      companion object {
-		fun runTests(context: Context) {
-			// No further code is added here.
-		}
+         fun runTests(context: Context) {
+             // No further code is added here.
+         }
     }
 }
 ```
