@@ -83,12 +83,20 @@ class TestResultsDetailsFragment : BaseFragment(R.layout.cw_fragment_test_result
         }
 
         rootView.post {
+            // Important: Loading images with Coil requires calling the allowHardware function with its enable property set to false.
+            // Without this, Falcon's takeScreenshotBitmap function will fail for UIs containing ImageViews. They will fail with the
+            // exception "Software rendering doesn't support hardware bitmaps"
+
             if (testInfo.isUITest) {
                 if (testInfo.testResults?.uiTestInfoCurrent?.snapshotUrl != null) {
                     if (testInfo.testResults?.uiTestInfoCurrent?.snapshotUrl?.startsWith("/") == true) {
-                        iv_snapshot_current.load(File(testInfo.testResults?.uiTestInfoCurrent?.snapshotUrl))
+                        iv_snapshot_current.load(File(testInfo.testResults?.uiTestInfoCurrent?.snapshotUrl)) {
+                            allowHardware(false)
+                        }
                     } else {
-                        iv_snapshot_current.load(testInfo.testResults?.uiTestInfoCurrent?.snapshotUrl)
+                        iv_snapshot_current.load(testInfo.testResults?.uiTestInfoCurrent?.snapshotUrl) {
+                            allowHardware(false)
+                        }
                     }
                 }
 
@@ -101,9 +109,13 @@ class TestResultsDetailsFragment : BaseFragment(R.layout.cw_fragment_test_result
                     if (testInfo.uiTestInfoPrevious?.snapshotUrl != null) {
                         testInfo.uiTestInfoPrevious?.snapshotUrl?.let {
                             if (it.startsWith("/")) {
-                                iv_snapshot_previous.load(File(it))
+                                iv_snapshot_previous.load(File(it)) {
+                                    allowHardware(false)
+                                }
                             } else {
-                                iv_snapshot_previous.load(it)
+                                iv_snapshot_previous.load(it) {
+                                    allowHardware(false)
+                                }
                             }
                         }
                     } else {
