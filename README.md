@@ -45,6 +45,7 @@ Codewif is an Android library framework to allow you to perform in-app testing o
   * [The Test Results Screen After Testing](#the-test-results-screen-after-testing)
   * [Viewing a Failed UI Test](#viewing-a-failed-ui-test)
 * [The Codewif API](codewif_api_docs.md)
+* [Sample Code](#sample_code)
 * [Contributing](#contributing)
 * [License](#license)
 
@@ -113,6 +114,8 @@ Snapshot images are stored on a device's SD card under the folder:
 where project_id is the id you assign to your project during the test setup. Because this is stored on the sd card, the files remain there even if you uninstall the Codewif Service app. Also, deleting the Codewif Service app's cache does not delete these files. The reason why these files are stored on the sd card is because the framework library also stores its screen snapshots there before handing them over the Codewif Service app. The sd card acts as a mutual storage place for both the framework library and the service app, avoiding the need to transfer large amounts of image data between the two. Should you find a need to reinstall the service app, you might want to delete all the data under ```/sdcard/Codewif``` to be sure you have a clean install.
 
 By handling the storage of images and communicating with the backend, the service app can persist your test data even when your app is terminated or uninstalled.
+
+If the Codewif Framework detects that you need to use the Codewif Service, it checks to see if it is installed. If it's installed, it will automatically start it if it's not already running. If it's not installed, you will be prompted to install it. When you press on the OK button in the prompt dialog, you are taken to the app in Google Play where you can download it. Of course, the source code for it is also part of this project, so you can also compile it and install it manually if you need to.
 <br>
 
 # Setting Up Your Test Environment
@@ -531,11 +534,15 @@ If the current snapshot is correct and you want it to replace the previous one, 
 <br><br>
 
 # The Codewif API
-
 For detailed information on the classes and methods provided by Codewif's library framework, see: 
 [The Codewif API](codewif_api_docs.md) documentation.
 <br>
 
+# Sample Code
+The ```samples``` folder contains a few samples to test out Codewif. The module ```appTestSample``` is an Android app and demonstrates both unit tests and UI tests. The ```libTestSample``` is also an Android app but includes an Android library module that will be tested. This app demonstrates how to test an Android library.
+
+The Codewif project on Github includes the branches ```unit_tests``` and ```ui_tests```. Codewif uses itself to test its own code. These branches have modules that contain test code. You can review these as additional examples on how to implement Codewif testing.
+<br>
 
 # Contributing
 Contributions by developers are welcomed. A few rules however need to be observed:
