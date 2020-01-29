@@ -45,7 +45,7 @@ Codewif is an Android library framework to allow you to perform in-app testing o
   * [The Test Results Screen After Testing](#the-test-results-screen-after-testing)
   * [Viewing a Failed UI Test](#viewing-a-failed-ui-test)
 * [The Codewif API](codewif_api_docs.md)
-* [Sample Code](#sample_code)
+* [Sample Code](#sample-code)
 * [Contributing](#contributing)
 * [License](#license)
 
