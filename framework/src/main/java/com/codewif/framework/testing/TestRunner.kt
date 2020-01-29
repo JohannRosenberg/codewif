@@ -356,7 +356,7 @@ open class TestRunner {
                                 val startTime = Date()
 
                                 try {
-                                    withContext(Dispatchers.IO) {
+                                    runBlocking(Dispatchers.IO) {
                                         testResult = unitTest.getTestToRunSync()?.invoke() as TestResult
                                     }
                                 } catch (exception: Exception) {
@@ -371,7 +371,7 @@ open class TestRunner {
                                 var terminate = false
 
                                 try {
-                                    withContext(Dispatchers.Main) {
+                                    runBlocking(Dispatchers.Main) {
                                         unitTest.getUITestToRun()?.invoke()
                                         testResult = UITester.testUI(testInfo)
                                     }
