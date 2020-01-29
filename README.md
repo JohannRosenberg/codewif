@@ -2,8 +2,6 @@
 
 [![Release](https://jitpack.io/v/johannblake/codewif.svg)](https://jitpack.io/#johannblake/codewif)
 
-**This is currently under development and should be done by the end of the week.**
-
 # Overview
 Codewif is an Android library framework to allow you to perform in-app testing of Android apps and libraries. It offers the following benefits over the traditional way of testing apps:
 
