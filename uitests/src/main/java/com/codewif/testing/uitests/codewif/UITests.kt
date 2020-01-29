@@ -21,7 +21,7 @@ class UITests : TestSetup() {
                 TestRunner.displayTests()
             }
 
-            delay(600)
+            delay(1000)
         })
 
         addTest(UnitTest("Dummy test to skip", skipTest = true).uiTestToRun {
