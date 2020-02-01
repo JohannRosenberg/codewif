@@ -33,7 +33,8 @@ class TestController {
                     }
                     .sendTestResultsToBackend(url = "https://hookb.in/dmPG11m3DBFGDEK1Ym7l")
                     .showTestResultsAfterTesting()
-                    .addTestSetups(::UITests, ::MathUnitTests, ::StringUnitTests)
+                    .displayTests()
+                    .addTestSetups(::MathUnitTests, ::StringUnitTests)
                     .runTests()
             }
         }

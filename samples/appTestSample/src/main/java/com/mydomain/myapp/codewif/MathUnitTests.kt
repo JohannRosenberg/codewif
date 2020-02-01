@@ -27,13 +27,14 @@ class MathUnitTests : TestSetup() {
         })
 
         addTest(UnitTest(testName = "Subtract numbers", skipTest = true).testToRunSync {
-
+            delay(300)
             val testResult = TestResult()
             testResult.succeeded = true
             testResult
         })
 
         addTest(UnitTest("Square root").testToRunSync {
+            delay(3000)
             val testResult = TestResult()
             testResult.succeeded = true
             testResult
@@ -46,7 +47,7 @@ class MathUnitTests : TestSetup() {
         })
 
         addTest(UnitTest("Long computation B").testToRunAsync { callback ->
-            delay(100)
+            delay(4000)
             val testResult = TestResult()
             testResult.succeeded = true
             callback.invoke(testResult)
