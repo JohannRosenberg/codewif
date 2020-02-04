@@ -16,6 +16,10 @@ Codewif is an Android library framework to allow you to perform in-app testing o
 ✓ The Codewif framework is built with Kotlin and makes extensive use of coroutines.<br>
 ✓ Non-developers (testers) can run tests without needing Android Studio.<br>
 ✓ Easy to use.
+<br>
+
+Article about in-app testing with Codewif on Medium.com
+[https://tinyurl.com/yx6q3dn6](https://tinyurl.com/yx6q3dn6)
 <br><br>
 
 # Table of Contents
