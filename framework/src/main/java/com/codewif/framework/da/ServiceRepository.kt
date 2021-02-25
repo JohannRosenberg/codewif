@@ -1,6 +1,7 @@
 package com.codewif.framework.da
 
 import android.content.*
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.*
@@ -87,6 +88,7 @@ class ServiceRepository {
 
             if (!serviceInstalled) {
                 val intent = Intent(ctx, CodewifMainActivity::class.java)
+                intent.flags = FLAG_ACTIVITY_NEW_TASK
                 ContextCompat.startActivity(ctx, intent, null)
 
                 waitTillActivityResumed()
@@ -172,9 +174,7 @@ class ServiceRepository {
                         items.toCollection(uiTests)
 
                         when (msg.what) {
-                            SERVICE_CMD_GET_UI_TESTS -> {
-                                getUITestsContinuation.resume(uiTests)
-                            }
+                            SERVICE_CMD_GET_UI_TESTS -> getUITestsContinuation.resume(uiTests)
                             SERVICE_CMD_STORE_UI_TESTS -> storeUITestsContinuation.resume(uiTests)
                         }
                     }
@@ -213,7 +213,7 @@ class ServiceRepository {
          * Stores UI test results.
          */
         suspend fun storeUITests(uiTests: List<UITestInfoBase>): List<UITestInfoBase> = suspendCoroutine { cont ->
-            getUITestsContinuation = cont
+            storeUITestsContinuation = cont
 
             val json = gson.toJson(StoreUITestsServiceCall(TestRepository.projectId, uiTests))
 

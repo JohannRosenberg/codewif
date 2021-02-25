@@ -29,5 +29,6 @@ open class TestSetup {
         }
 
         tests[key] = unitTest
+
     }
 }
