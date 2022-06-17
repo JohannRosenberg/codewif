@@ -1,4 +1,4 @@
-include ':framework', ':codewifservice', ':codewifshared', ':appTestSample', ':libLauncher', ':myLib'
+include ':framework', ':codewifservice', ':codewifshared', ':appTestSample', ':libLauncher', ':myLib', ':uitests'
 project(":appTestSample").projectDir=new File(rootDir, "samples/appTestSample")
 project(":libLauncher").projectDir=new File(rootDir, "samples/libTestSample/libLauncher")
 project(":myLib").projectDir=new File(rootDir, "samples/libTestSample/myLib")
